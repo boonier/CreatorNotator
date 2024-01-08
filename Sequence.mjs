@@ -1,5 +1,3 @@
-export const testVar = "test success module";
-
 // class Note {
 //   constructor(frequency, velocity, timeStamp) {
 //     this.frequency = frequency;
@@ -10,6 +8,7 @@ export const testVar = "test success module";
 
 export default class Sequence {
   constructor(length) {
+    console.log('Sequence created')
     /* holds Events
     {
       frequency: 0..127 or 0..16383,

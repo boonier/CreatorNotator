@@ -66,7 +66,7 @@ printSeqBtn.addEventListener('click', () => {
 const tempoSlider = document.getElementById('tempo');
 const bpmVal = document.getElementById('bpmval');
 tempoSlider.addEventListener('input', (ev, val) => {
-  bpmVal.textContent = ev.target.value;
+  bpmVal.textContent = `${ev.target.value}bpm`;
   mainClock.setTempo(ev.target.value);
 })
 
