@@ -1,8 +1,52 @@
+@font-face {
+  font-family: "AtariST8x16SystemFont";
+  src:
+    url("https://replit.com/@boonier/Creator#AtariST8x16SystemFont.woff2") format("woff2");
+}
+
+
 html {
   height: 100%;
   width: 100%;
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  /* font-family: 'Open Sans', sans-serif; */
+  font-family: 'AtariST8x16SystemFont', 'VT323', monospace;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: normal;
+}
+
+button {
+  border: 3px solid #000000;
+  background-color: white;
+  font-family: 'AtariST8x16SystemFont', 'VT323', monospace;
+  font-size: 19px;
+  text-transform: uppercase;
+  min-width: 60px;
+}
+
+panel {
+  flex: 1;
+  display: inline-block;
+  padding: 10px;
+  border: 3px solid #000000;
+  box-shadow: 3px 3px 0 #ddd;
+  background-color: #f0f0f0;
+}
+
+pane {
+  border: 2px solid #000000;
+  background-color: white;
+}
+
+panelgroup {
+  /* border: 1px solid pink; */
+  display: flex;
+  padding: 5px;
+  column-gap: 10px;
 }

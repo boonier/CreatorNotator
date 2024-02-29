@@ -22,9 +22,9 @@ export default class Sequence {
   }
 
   accumClock() {
-    // accummulate the internal count
     // console.log(this.counter);
-    console.log(this.readEvent());
+    // console.log(this.readEvent());
+    // accummulate the internal count
     this.counter = (this.counter + 1) % this.length;
   }
 

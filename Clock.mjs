@@ -2,7 +2,7 @@ export default class Clock {
   constructor(audioContext, callback) {
     console.log('Clock created');
     this.audioContext = audioContext;
-    console.log(this.audioContext)
+    // console.log(this.audioContext)
     this.callback = callback;
 
     this.unlocked = false;
@@ -16,7 +16,7 @@ export default class Clock {
     // with next interval (in case the timer is late)
     this.nextNoteTime = 0.0;     // when the next note is due.
     this.noteResolution = 0;     // 0 == 16th, 1 == 8th, 2 == quarter note
-    this.noteLength = 0.05;      // length of "beep" (in seconds)
+    this.noteLength = 0.03;      // length of "beep" (in seconds)
 
     this.last16thNoteDrawn = -1; // the last "box" we drew on the screen
     this.notesInQueue = [];      // the notes that have been put into the web audio,
@@ -40,7 +40,7 @@ export default class Clock {
   }
 
   scheduleNote(beatNumber, time) {
-    // console.log('scheduleNote');
+    // console.log('scheduleNote', beatNumber, time);
     // push the note on the queue, even if we're not playing.
     this.notesInQueue.push({ note: beatNumber, time: time });
 
@@ -51,7 +51,14 @@ export default class Clock {
 
     // create an oscillator
     const osc = this.audioContext.createOscillator();
-    osc.connect(this.audioContext.destination);
+    const ampEnv = this.audioContext.createGain();
+    osc.connect(ampEnv);
+    osc.type = 'square';
+    ampEnv.connect(this.audioContext.destination);
+    ampEnv.gain.setValueAtTime(0.0, time);
+    ampEnv.gain.linearRampToValueAtTime(0.3, time + (this.noteLength * 0.1));
+    ampEnv.gain.linearRampToValueAtTime(0.0, time + (this.noteLength * 0.9));
+
     if (beatNumber % 16 === 0)    // beat 0 == high pitch
       osc.frequency.value = 880.0;
     else if (beatNumber % 4 === 0)    // quarter notes = medium pitch

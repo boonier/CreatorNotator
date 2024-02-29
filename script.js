@@ -1,16 +1,25 @@
 import Clock from './Clock.mjs';
 import Sequence from './Sequence.mjs';
-
 import Event from './Event.mjs';
 import Track from './Track.mjs';
+import { START, STOP, NOTE } from './constants.mjs';
 
-const NOTE = 'NOTE'
+
 
 // is counter useful or is is better to send an event of some kind?
 let mstrCount = 0;
 
 // create global AudioContext
 const audioContext = new AudioContext();
+
+
+navigator.mediaDevices.getUserMedia({
+  audio: true,
+  video: false,
+}).then(stream => {
+  console.log(stream.getAudioTracks()[0].label);
+  console.log(stream.getAudioTracks()[0]);
+});
 
 // First, let's shim the requestAnimationFrame API, with a setTimeout fallback
 window.requestAnimFrame = window.requestAnimationFrame;
@@ -46,13 +55,13 @@ console.log(sequence);
 // UI stufffff
 const startStopBtn = document.getElementById('startstop');
 startStopBtn.addEventListener('click', (ev) => {
-  if (ev.target.textContent === 'START') {
+  if (ev.target.textContent === START) {
     mstrCount = 0;
     mainClock.play();
-    ev.target.textContent = 'STOP';
+    ev.target.textContent = STOP;
   } else {
     mainClock.play();
-    ev.target.textContent = 'START';
+    ev.target.textContent = START;
   };
   // mainClock.play();
 })
@@ -63,8 +72,11 @@ printSeqBtn.addEventListener('click', () => {
 })
 
 
+
 const tempoSlider = document.getElementById('tempo');
 const bpmVal = document.getElementById('bpmval');
+
+bpmVal.textContent = `${tempoSlider.value}bpm`;
 tempoSlider.addEventListener('input', (ev, val) => {
   bpmVal.textContent = `${ev.target.value}bpm`;
   mainClock.setTempo(ev.target.value);

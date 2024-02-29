@@ -5,17 +5,32 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>replit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
   <h1>Creator Notator Bastard Thing</h1>
 
-  <button id="startstop">START</button>
-  <button id="printseq">print sequence</button><br>
-  <input type="range" id="tempo" min="20" max="300" />
-  <span id="bpmval"></span>
-  <div id="counter"></div>
+  <panelgroup>
+    <panel>arranger</panel>
+    <panel>pattern</panel>
+    <panel>track</panel>
+  </panelgroup>
+
+  <panelgroup>
+    <panel>
+      <button id="startstop">Play</button>
+      <button id="record">Record</button>
+      <button id="printseq">Print Sequence</button><br>
+      <input type="range" id="tempo" min="20" max="300" value="130" />
+      <span id="bpmval"></span>
+      <div id="counter"></div>
+    </panel>
+  </panelgroup>
+
   <script type="module" src="script.js"></script>
   <!-- <script src="sequence.js" type="module"></script> -->
   <!--
