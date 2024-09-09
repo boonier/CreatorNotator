@@ -6,6 +6,7 @@ export default class Clock {
     this.callback = callback;
 
     this.unlocked = false;
+
     this.isPlaying = false;      // Are we currently playing?
     this.startTime;              // The start time of the entire sequence.
     this.current16thNote;        // What note is currently last scheduled?
@@ -40,6 +41,7 @@ export default class Clock {
   }
 
   scheduleNote(beatNumber, time) {
+
     // console.log('scheduleNote', beatNumber, time);
     // push the note on the queue, even if we're not playing.
     this.notesInQueue.push({ note: beatNumber, time: time });
