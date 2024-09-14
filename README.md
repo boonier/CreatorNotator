@@ -1,3 +1,3 @@
-# Creator Notator MVP
+# CreatorNotator
 
 https://boonier.github.io/CreatorNotatorMVP/
